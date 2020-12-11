@@ -21,8 +21,27 @@ describe('server responses', () => {
     done();
   });
 
+  // make our random swim command GET response test here, or use stub below?
+  // it('should respond to a GET request with a random swim command', (done) => {
+
+  //   done();
+  // });
+
   it('should respond to a GET request for a swim command', (done) => {
     // write your test here
+    // send a response of a random swim command
+    // create mock server, with GET request type, response of swim command
+    let {req, res} = server.mock('/', 'GET');
+
+    // make an HTTP GET request to mock server
+    httpHandler.router(req, res, () => console.log('Wow! You made a GET request!'));
+
+    // HTTP response code should be 200 = 'success'
+    expect(res._responseCode).to.equal(200);
+    // response should end after request?
+    expect(res._ended).to.equal(true);
+    // we DO need data back inform of random swim command(?)
+
     done();
   });
 
