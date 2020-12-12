@@ -31,7 +31,7 @@ describe('server responses', () => {
     // in mock response, write the data it should return to be a rando swim command
     const randomCommands = ['up', 'down', 'left', 'right'];
     let randomSwimCommand = randomCommands[Math.floor(Math.random() * randomCommands.length)];
-    res.write(randomSwimCommand);
+    //res.write(randomSwimCommand);
 
     // make an HTTP GET request to mock server
     httpHandler.router(req, res, () => console.log(`Wow! You made a GET request! It\'s a ${randomSwimCommand}`));

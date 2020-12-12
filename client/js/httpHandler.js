@@ -13,14 +13,15 @@
 
       success: (data) => {
         // SwimTeam(data)
-        console.log(data)
+        SwimTeam.move(data);
+        console.log('received command: ' + data);
       },
       error: (data) => {
         console.error('Something went wrong. ' + data);
       }
     });
   }
-  console.log('before iffy');
+  // console.log('before iffy');
   getSwimCommand();
 
   /////////////////////////////////////////////////////////////////////
