@@ -22,7 +22,7 @@
     });
   }
   // console.log('before iffy');
-  getSwimCommand();
+  setInterval(getSwimCommand, 5000);
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
