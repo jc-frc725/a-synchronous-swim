@@ -12,7 +12,7 @@
       url: serverUrl,
       success: (data) => {
         SwimTeam.move(data);
-        console.log('received command: ' + data);
+        //console.log('received command: ' + data);
       },
       error: (data) => {
         console.error('Something went wrong. ' + data);
@@ -20,8 +20,8 @@
     });
   }
   // console.log('before iffy');
-  //setInterval(getSwimCommand, 5000);
-  getSwimCommand();
+  // lower the interval, the lower the 'lag'
+  setInterval(getSwimCommand, 500);
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
@@ -34,7 +34,7 @@
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: serverUrl,
       cache: false,
       contentType: false,
       processData: false,

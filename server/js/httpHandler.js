@@ -15,6 +15,7 @@ module.exports.initialize = (queue) => {
   //messageQueue.dequeue();
 };
 
+// put responses to GET, POST, OPTIONS, ETC in here
 module.exports.router = (req, res, next = ()=>{}) => {
   if (req.method === 'GET') {
     res.writeHead(200, headers);
@@ -30,5 +31,5 @@ module.exports.router = (req, res, next = ()=>{}) => {
   // res.writeHead(200, headers);
   // console.log('Server responding to ' + req.method + ' with: ' + randomSwimCommand);
   // res.end(randomSwimCommand);
-  // next(); // invoke next() at the end of a request to help with testing!
+  next(); // invoke next() at the end of a request to help with testing!
 };

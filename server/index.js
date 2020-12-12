@@ -9,12 +9,8 @@ keypressHandler.initialize((message) => {
   console.log(`Message received: ${message}`)
   // httpHandler.initialize(message)
   messageQueue.enqueue(message);
-  console.log(`preparing to send command '${message}' to client...`);
-  //httpHandler.initialize(message);
-
+  //console.log(`preparing to send command '${message}' to client...`);
 });
-
-
 
 const http = require('http');
 const server = http.createServer(httpHandler.router);
