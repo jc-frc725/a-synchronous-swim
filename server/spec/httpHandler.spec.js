@@ -21,27 +21,29 @@ describe('server responses', () => {
     done();
   });
 
-  // make our random swim command GET response test here, or use stub below?
-  // it('should respond to a GET request with a random swim command', (done) => {
-
-  //   done();
-  // });
-
   it('should respond to a GET request for a swim command', (done) => {
     // write your test here
     // send a response of a random swim command
     // create mock server, with GET request type, response of swim command
     let {req, res} = server.mock('/', 'GET');
 
+    // before calling router, write data for response?
+    // in mock response, write the data it should return to be a rando swim command
+    const randomCommands = ['up', 'down', 'left', 'right'];
+    let randomSwimCommand = randomCommands[Math.floor(Math.random() * randomCommands.length)];
+    res.write(randomSwimCommand);
+
     // make an HTTP GET request to mock server
-    httpHandler.router(req, res, () => console.log('Wow! You made a GET request!'));
+    httpHandler.router(req, res, () => console.log(`Wow! You made a GET request! It\'s a ${randomSwimCommand}`));
 
     // HTTP response code should be 200 = 'success'
     expect(res._responseCode).to.equal(200);
     // response should end after request?
     expect(res._ended).to.equal(true);
-    // we DO need data back inform of random swim command(?)
-
+    // we DO need data back in form of random swim command(?)
+    // to insert data, use res.write(data)? does this happen before or after expect tests?
+    expect(res._data.toString()).to.not.be.empty;
+    expect(randomSwimCommand).to.include(res._data.toString());
     done();
   });
 
