@@ -1,10 +1,19 @@
 
-
+const httpHandler = require('./js/httpHandler');
+const messageQueue = require('./js/messageQueue');
+// can now access server httpHandler's .initialize?
 
 const keypressHandler = require('./js/keypressHandler');
-keypressHandler.initialize(message => console.log(`Message received: ${message}`));
+// keypress .initialize allows typing/server terminal input
+keypressHandler.initialize((message) => {
+  console.log(`Message received: ${message}`)
+  // httpHandler.initialize(message)
+  messageQueue.enqueue(message);
+  console.log(`preparing to send command '${message}' to client...`);
+  //httpHandler.initialize(message);
 
-const httpHandler = require('./js/httpHandler');
+});
+
 
 
 const http = require('http');

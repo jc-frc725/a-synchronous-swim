@@ -10,9 +10,7 @@
   const getSwimCommand = () => {
     $.get({
       url: serverUrl,
-
       success: (data) => {
-        // SwimTeam(data)
         SwimTeam.move(data);
         console.log('received command: ' + data);
       },
@@ -22,7 +20,8 @@
     });
   }
   // console.log('before iffy');
-  setInterval(getSwimCommand, 5000);
+  //setInterval(getSwimCommand, 5000);
+  getSwimCommand();
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
