@@ -4,7 +4,24 @@
 
   //
   // TODO: build the swim command fetcher here
+  // make a GET requester here?
   //
+  // how to invoke on keypress? when server starts up? what to do next?
+  const getSwimCommand = () => {
+    $.get({
+      url: serverUrl,
+
+      success: (data) => {
+        // SwimTeam(data)
+        console.log(data)
+      },
+      error: (data) => {
+        console.error('Something went wrong. ' + data);
+      }
+    });
+  }
+  console.log('before iffy');
+  getSwimCommand();
 
   /////////////////////////////////////////////////////////////////////
   // The ajax file uplaoder is provided for your convenience!
@@ -47,3 +64,5 @@
   });
 
 })();
+
+// console.log('test');
