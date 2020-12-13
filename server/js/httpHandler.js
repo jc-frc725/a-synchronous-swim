@@ -17,19 +17,29 @@ module.exports.initialize = (queue) => {
 
 // put responses to GET, POST, OPTIONS, ETC in here
 module.exports.router = (req, res, next = ()=>{}) => {
+  // url types: filepath or url
+  // if filepath, ends in .jpg
+  // if not, its a url
+  //( req.url.endsWith('.jpg')
+  console.log(req.url);
+
   if (req.method === 'GET') {
-    res.writeHead(200, headers);
-    res.end(messageQueue.dequeue());
+    if (fs.existsSync(req.url) && req.url.endsWith('.jpg')) {
+      res.writeHead(200, headers);
+      res.end();
+    } else if (fs.existsSync(req.url)) {
+      res.writeHead(200, headers);
+      res.end(messageQueue.dequeue());
+    } else {
+      res.writeHead(404, headers);
+      res.end();
+    }
   }
 
-
-  // randoCommandHere
-  // const randomCommands = ['up', 'down', 'left', 'right'];
-  // let randomSwimCommand = randomCommands[Math.floor(Math.random() * randomCommands.length)];
-
+  if (req.method === 'OPTIONS') {
+    res.writeHead(200, headers);
+    res.end();
+  }
   // console.log('Serving request type ' + req.method + ' for url ' + req.url);
-  // res.writeHead(200, headers);
-  // console.log('Server responding to ' + req.method + ' with: ' + randomSwimCommand);
-  // res.end(randomSwimCommand);
   next(); // invoke next() at the end of a request to help with testing!
 };
